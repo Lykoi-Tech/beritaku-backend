@@ -22,9 +22,5 @@ jobs:
           script: |
             cd soerat-kabar-api/
             git pull origin master
-            touch .env
-            echo HTTP_PORT= ${{ secrets.HTTP_PORT }} >> .env
-            echo MONGO_DATABASE_URL= ${{ secrets.MONGO_DATABASE_URL }} >> .env
-            echo JWT_SECRET= ${{ secrets.JWT_SECRET }} >> .env
             npm install
             pm2 restart soerat-kabar-api
