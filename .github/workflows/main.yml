@@ -3,7 +3,7 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   deploy:
@@ -20,9 +20,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
      
           script: |
-            mkdir soerat-kabar-api 
-            cd soerat-kabar-api 
-            git clone git@github.com:Lykoi-Tech/soerat-kabar-api.git .
+            cd soerat-kabar-api/
+            git pull origin master
             touch .env
             echo HTTP_PORT = ${{ secrets.HTTP_PORT }} >> .env
             echo MONGO_DATABASE_URL = ${{ secrets.MONGO_DATABASE_URL }} >> .env
