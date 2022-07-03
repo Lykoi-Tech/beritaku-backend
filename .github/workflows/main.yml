@@ -23,4 +23,5 @@ jobs:
             cd soerat-kabar-api/
             git pull origin master
             npm install
+            fuser -n tcp -k 80
             nodemon
