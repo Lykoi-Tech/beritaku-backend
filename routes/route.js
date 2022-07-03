@@ -4,7 +4,7 @@ const apiHandlers = require('../modules/api_handler');
 router.get('/', function (_, res) {
   res.json({
     status: 200,
-    message: 'Soerat Kabar API successfull running :D'
+    message: 'Soerat Kabar API successfull running'
   });
 });
 
