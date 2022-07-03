@@ -23,4 +23,4 @@ jobs:
             cd soerat-kabar-api/
             git pull origin master
             npm install
-            pm2 restart soerat-kabar-api
+            forever restartall
