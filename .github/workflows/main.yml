@@ -2,10 +2,15 @@ name: Build & Deploy
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
     steps:
       - name: Deploy NodeJS app
         uses: appleboy/ssh-action@v0.1.2
@@ -15,7 +20,12 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
      
           script: |
-            mkdir test 
-            cd test 
-            git@github.com:Lykoi-Tech/soerat-kabar-api.git 
-            echo 'Deployment successful to digital ocean' 
+            mkdir soerat-kabar-api 
+            cd soerat-kabar-api 
+            git clone git@github.com:Lykoi-Tech/soerat-kabar-api.git .
+            touch .env
+            echo HTTP_PORT = ${{ secrets.HTTP_PORT }} >> .env
+            echo MONGO_DATABASE_URL = ${{ secrets.MONGO_DATABASE_URL }} >> .env
+            echo JWT_SECRET = ${{ secrets.JWT_SECRET }} >> .env
+            npm install
+            pm2 restart soerat-kabar-api
