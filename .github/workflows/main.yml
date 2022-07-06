@@ -28,4 +28,4 @@ jobs:
             git pull origin master
             npm install
             fuser -n tcp -k 80
-            forever start index.js
+            node index.js
