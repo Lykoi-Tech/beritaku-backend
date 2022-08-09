@@ -9,5 +9,7 @@ router.get('/', function (_, res) {
 });
 
 router.post('/users/register', apiHandlers.registerUser);
+router.get('/articles', apiHandlers.getAllArticles);
+router.get('/category', apiHandlers.getAllCategory);
 
 module.exports = router;
